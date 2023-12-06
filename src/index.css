@@ -36,6 +36,25 @@
    }
 }
 
+@layer components {
+   .textField__input {
+      @apply w-full py-3 px-4 rounded-xl text-secondary-900 border-2 border-gray-300
+      focus:border-primary-500 focus:bg-white focus:shadow-lg focus:shadow-primary-200 transition-all;
+   }
+
+   .btn {
+      @apply px-3 py-1 font-bold rounded-xl transition-all;
+   }
+
+   .btn--primary {
+      @apply px-4 py-2 bg-primary-900 text-secondary-100 hover:bg-primary-800;
+   }
+
+   .btn--secondary {
+      @apply bg-secondary-600 text-secondary-100;
+   }
+}
+
 html,
 body {
    padding: 0;
