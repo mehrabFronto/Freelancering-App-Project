@@ -1,9 +1,10 @@
-import SendOTPForm from "../feature/authentication/SendOTPForm";
+import CheckOTPForm from "../feature/authentication/CheckOTPForm";
 
 const Auth = () => {
    return (
       <div className="w-full container p-4 h-screen sm:max-w-sm">
-         <SendOTPForm />
+         {/* <SendOTPForm /> */}
+         <CheckOTPForm />
       </div>
    );
 };
