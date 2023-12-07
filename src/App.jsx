@@ -1,11 +1,13 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Auth from "./pages/Auth";
 import CompleteProfile from "./pages/CompleteProfile";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import Owner from "./pages/Owner";
+import OwnerDashboard from "./pages/OwnerDashboard";
+import ProjectsList from "./pages/ProjectsList";
+import SingleProject from "./pages/SingleProject";
 import AppLayout from "./ui/AppLayout";
 
 const queryClient = new QueryClient();
@@ -27,10 +29,29 @@ const App = () => {
                path="/complete-profile"
                element={<CompleteProfile />}
             />
-            <Route element={<AppLayout />}>
+            <Route
+               path="/owner"
+               element={<AppLayout />}>
                <Route
-                  path="/owner"
-                  element={<Owner />}
+                  index
+                  element={
+                     <Navigate
+                        to="dashboard"
+                        replace
+                     />
+                  }
+               />
+               <Route
+                  path="dashboard"
+                  element={<OwnerDashboard />}
+               />
+               <Route
+                  path="projects"
+                  element={<ProjectsList />}
+               />
+               <Route
+                  path="projects/:id"
+                  element={<SingleProject />}
                />
             </Route>
             <Route
