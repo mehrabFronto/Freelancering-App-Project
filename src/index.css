@@ -97,6 +97,10 @@ input[type="number"] {
    -moz-appearance: textfield; /* Firefox */
 }
 
+input::placeholder {
+   text-align: right;
+}
+
 /* TABLE */
 
 table {

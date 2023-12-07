@@ -1,9 +1,11 @@
 const TextField = ({ value, onChange, name, label }) => {
+   const placeholder = "..." + label;
+
    return (
       <div>
          <label
             htmlFor={name}
-            className="mb-2 block text-xl">
+            className="mb-2 block text-lg font-bold">
             {label}
          </label>
          <input
@@ -14,7 +16,8 @@ const TextField = ({ value, onChange, name, label }) => {
             name={name}
             className="textField__input"
             autoComplete="off"
-            placeholder={`${label}...`}
+            placeholder={placeholder}
+            dir="auto"
          />
       </div>
    );
