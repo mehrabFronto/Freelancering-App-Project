@@ -14,6 +14,7 @@ const TextField = ({ value, onChange, name, label }) => {
             name={name}
             className="textField__input"
             autoComplete="off"
+            placeholder={`${label}...`}
          />
       </div>
    );
