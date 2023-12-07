@@ -1,12 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { completeProfile } from "../../services/authServices";
 import Loading from "../../ui/Loading";
 import RadioInput from "../../ui/RadioInput";
 import TextField from "../../ui/TextField";
 
 const CompleteProfileForm = () => {
+   const navigate = useNavigate();
+
    const [name, setName] = useState("");
    const [email, setEmail] = useState("");
    const [role, setRole] = useState("FREELANCER");
@@ -19,8 +22,16 @@ const CompleteProfileForm = () => {
       e.preventDefault();
 
       try {
-         const { message } = await mutateAsync({ name, email, role });
+         const { message, user } = await mutateAsync({ name, email, role });
          toast.success(message);
+         if (user.status !== 2) {
+            navigate("/");
+            toast("پروفایل شما در انتظار تایید است", { icon: "👏" });
+            return;
+         }
+         if (user.role === "FREELANCER") return navigate("/freelancer");
+         if (user.role === "OWNER") return navigate("/owner");
+         if (user.role === "ADMIN") return navigate("/admin");
       } catch (err) {
          toast.error(err?.response?.data?.message);
       }
