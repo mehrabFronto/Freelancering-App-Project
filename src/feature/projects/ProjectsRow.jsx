@@ -1,3 +1,8 @@
+import { useState } from "react";
+import { FiTrash2 } from "react-icons/fi";
+import { TbEdit } from "react-icons/tb";
+import ConfirmDelete from "../../ui/ConfirmDelete";
+import Modal from "../../ui/Modal";
 import Table from "../../ui/Table";
 import { toLocalDateString } from "../../utils/toLocalDateString";
 import {
@@ -7,6 +12,9 @@ import {
 import truncateText from "../../utils/truncateText";
 
 const ProjectsRow = ({ project, index }) => {
+   const [isEditOpen, setIsEditOpen] = useState(false);
+   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
    return (
       <Table.Row>
          <td>{toPersianDigits(index)}</td>
@@ -33,7 +41,39 @@ const ProjectsRow = ({ project, index }) => {
                <span className="badge badge--danger">بسته</span>
             )}
          </td>
-         <td>...</td>
+         <td>
+            <div className="flex items-center gap-x-2">
+               <>
+                  <button onClick={() => setIsEditOpen(true)}>
+                     <TbEdit className="w-6 h-6 text-primary-900" />
+                  </button>
+                  <Modal
+                     open={isEditOpen}
+                     title={`ویرایش ${project.title}`}
+                     onClose={() => setIsEditOpen(false)}>
+                     <div className="flex items-center justify-center">
+                        this is modal
+                     </div>
+                  </Modal>
+               </>
+               <>
+                  <button onClick={() => setIsDeleteOpen(true)}>
+                     <FiTrash2 className="w-5 h-5 text-error" />
+                  </button>
+                  <Modal
+                     open={isDeleteOpen}
+                     title={`حذف ${project.title}`}
+                     onClose={() => setIsDeleteOpen(false)}>
+                     <ConfirmDelete
+                        resourceName={project.title}
+                        onClose={() => setIsDeleteOpen(false)}
+                        disabled={false}
+                        onConfirm={() => {}}
+                     />
+                  </Modal>
+               </>
+            </div>
+         </td>
       </Table.Row>
    );
 };
