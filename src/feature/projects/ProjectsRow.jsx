@@ -10,10 +10,13 @@ import {
    toPersianDigitsWithCommas,
 } from "../../utils/toPersianDigits";
 import truncateText from "../../utils/truncateText";
+import useRemoveProject from "./useRemoveProject";
 
 const ProjectsRow = ({ project, index }) => {
    const [isEditOpen, setIsEditOpen] = useState(false);
    const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+   const { removeProject } = useRemoveProject();
 
    return (
       <Table.Row>
@@ -68,7 +71,11 @@ const ProjectsRow = ({ project, index }) => {
                         resourceName={project.title}
                         onClose={() => setIsDeleteOpen(false)}
                         disabled={false}
-                        onConfirm={() => {}}
+                        onConfirm={() =>
+                           removeProject(project._id, {
+                              onSuccess: () => setIsDeleteOpen(false),
+                           })
+                        }
                      />
                   </Modal>
                </>
