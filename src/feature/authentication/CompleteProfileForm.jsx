@@ -1,28 +1,29 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { completeProfile } from "../../services/authServices";
 import Loading from "../../ui/Loading";
-import RadioInput from "../../ui/RadioInput";
+import RadioInputGroup from "../../ui/RadioInputGroup";
 import TextField from "../../ui/TextField";
 
 const CompleteProfileForm = () => {
    const navigate = useNavigate();
 
-   const [name, setName] = useState("");
-   const [email, setEmail] = useState("");
-   const [role, setRole] = useState("FREELANCER");
+   const {
+      handleSubmit,
+      register,
+      watch,
+      formState: { errors },
+   } = useForm();
 
    const { isPending, mutateAsync } = useMutation({
       mutationFn: completeProfile,
    });
 
-   const submitHandler = async (e) => {
-      e.preventDefault();
-
+   const submitHandler = async (data) => {
       try {
-         const { message, user } = await mutateAsync({ name, email, role });
+         const { message, user } = await mutateAsync(data);
          toast.success(message);
          if (user.status !== 2) {
             navigate("/");
@@ -35,47 +36,64 @@ const CompleteProfileForm = () => {
       } catch (err) {
          toast.error(err?.response?.data?.message);
       }
-
-      console.log({ name, email, role });
    };
 
    return (
-      <div>
+      <div className="flex flex-col items-center gap-y-8">
+         <h1 className="text-3xl font-bold text-secondary-700">
+            تکمیل اطلاعات
+         </h1>
          <form
-            className="space-y-8"
-            onSubmit={submitHandler}>
+            className="space-y-8 w-full"
+            onSubmit={handleSubmit(submitHandler)}>
             <TextField
-               value={name}
-               onChange={(e) => setName(e.target.value)}
+               register={register}
                name="name"
                label="نام و نام خانوادگی"
+               required={true}
+               validationSchema={{
+                  required: "نام و نام خانوادگی ضروری است",
+                  minLength: {
+                     value: 6,
+                     message: "نام و نام خانوادگی باید بیشتر از 6 حرف باشد",
+                  },
+                  maxLength: {
+                     value: 30,
+                     message: "نام و نام خانوادگی باید کمتر از 30 حرف باشد",
+                  },
+               }}
+               errors={errors}
             />
             <TextField
-               value={email}
-               onChange={(e) => setEmail(e.target.value)}
+               register={register}
                name="email"
                label="ایمیل"
-               type="email"
+               required={true}
+               validationSchema={{
+                  required: "ایمیل ضروری است",
+                  pattern: {
+                     message: "ایمیل نامعتبر است",
+                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  },
+               }}
+               errors={errors}
             />
 
-            <div className="flex items-center justify-center gap-x-8">
-               <RadioInput
-                  name="role"
-                  id="FREELANCER"
-                  label="فریلنسر"
-                  value="FREELANCER"
-                  checked={role === "FREELANCER"}
-                  onChange={(e) => setRole(e.target.value)}
-               />
-               <RadioInput
-                  name="role"
-                  id="OWNER"
-                  label="کارفرما"
-                  value="OWNER"
-                  checked={role === "OWNER"}
-                  onChange={(e) => setRole(e.target.value)}
-               />
-            </div>
+            <RadioInputGroup
+               errors={errors}
+               register={register}
+               watch={watch}
+               configs={{
+                  name: "role",
+                  validationSchema: {
+                     required: "انتخاب نقش ضروری است",
+                  },
+                  options: [
+                     { value: "FREELANCER", label: "فریلنسر" },
+                     { value: "OWNER", label: "کارفرما" },
+                  ],
+               }}
+            />
 
             {isPending ? (
                <Loading />
