@@ -10,6 +10,7 @@ import {
    toPersianDigitsWithCommas,
 } from "../../utils/toPersianDigits";
 import truncateText from "../../utils/truncateText";
+import CreateProjectForm from "./CreateProjectForm";
 import useRemoveProject from "./useRemoveProject";
 
 const ProjectsRow = ({ project, index }) => {
@@ -54,9 +55,10 @@ const ProjectsRow = ({ project, index }) => {
                      open={isEditOpen}
                      title={`ویرایش ${project.title}`}
                      onClose={() => setIsEditOpen(false)}>
-                     <div className="flex items-center justify-center">
-                        this is modal
-                     </div>
+                     <CreateProjectForm
+                        projectToEdit={project}
+                        onClose={() => setIsEditOpen(false)}
+                     />
                   </Modal>
                </>
                <>

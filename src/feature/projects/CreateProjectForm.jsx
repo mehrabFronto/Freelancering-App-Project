@@ -7,21 +7,48 @@ import Loading from "../../ui/Loading";
 import RHFSelect from "../../ui/RHFSelect";
 import TextField from "../../ui/TextField";
 import useCreateProject from "./useCreateProject";
+import useEditProject from "./useEditProject";
 
-const CreateProjectForm = ({ onClose }) => {
+const CreateProjectForm = ({ onClose, projectToEdit = {} }) => {
+   const { _id: editId } = projectToEdit;
+   const isEditingSession = Boolean(editId);
+
+   let editValues = {};
+
+   const {
+      title,
+      description,
+      budget,
+      category,
+      deadline,
+      tags: prevTags,
+   } = projectToEdit;
+
+   if (isEditingSession) {
+      editValues = {
+         title,
+         description,
+         budget,
+         deadline,
+         category: category._id,
+         tags: prevTags,
+      };
+   }
+
    const {
       register,
       formState: { errors },
       handleSubmit,
       reset,
-   } = useForm();
+   } = useForm({ defaultValues: editValues });
 
-   const [tags, setTags] = useState([]);
-   const [date, setDate] = useState(new Date());
+   const [tags, setTags] = useState(prevTags || []);
+   const [date, setDate] = useState(new Date(deadline || ""));
 
    const { categories } = useCategories();
 
-   const { createNewProject, isCreating } = useCreateProject(onClose);
+   const { createNewProject, isCreating } = useCreateProject();
+   const { editProject, isEditing } = useEditProject();
 
    const onSubmit = (data) => {
       const newProject = {
@@ -30,12 +57,24 @@ const CreateProjectForm = ({ onClose }) => {
          deadline: new Date(date).toISOString(),
       };
 
-      createNewProject(newProject, {
-         onSuccess: () => {
-            onClose();
-            reset();
-         },
-      });
+      if (isEditingSession) {
+         editProject(
+            { id: editId, newProject },
+            {
+               onSuccess: () => {
+                  onClose();
+                  reset();
+               },
+            },
+         );
+      } else {
+         createNewProject(newProject, {
+            onSuccess: () => {
+               onClose();
+               reset();
+            },
+         });
+      }
    };
 
    return (
@@ -130,7 +169,7 @@ const CreateProjectForm = ({ onClose }) => {
             required={true}
          />
 
-         {isCreating ? (
+         {isCreating || isEditing ? (
             <Loading />
          ) : (
             <button
