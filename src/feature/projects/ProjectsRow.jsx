@@ -11,6 +11,7 @@ import {
 } from "../../utils/toPersianDigits";
 import truncateText from "../../utils/truncateText";
 import CreateProjectForm from "./CreateProjectForm";
+import ToggleProjectStatus from "./ToggleProjectStatus";
 import useRemoveProject from "./useRemoveProject";
 
 const ProjectsRow = ({ project, index }) => {
@@ -39,11 +40,7 @@ const ProjectsRow = ({ project, index }) => {
          </td>
          <td>{project.freelancer?.name || "-"}</td>
          <td>
-            {project.status === "OPEN" ? (
-               <span className="badge badge--success">باز</span>
-            ) : (
-               <span className="badge badge--danger">بسته</span>
-            )}
+            <ToggleProjectStatus project={project} />
          </td>
          <td>
             <div className="flex items-center gap-x-2">
