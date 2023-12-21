@@ -23,6 +23,7 @@ const ProjectsTable = () => {
             <th>فریلنسر</th>
             <th>وضعیت</th>
             <th>عملبات</th>
+            <th>درخواست ها</th>
          </Table.Header>
          <Table.Body>
             {projects.map((project, index) => {

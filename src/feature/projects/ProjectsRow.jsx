@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FiTrash2 } from "react-icons/fi";
+import { HiEye } from "react-icons/hi";
 import { TbEdit } from "react-icons/tb";
+import { Link } from "react-router-dom";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Modal from "../../ui/Modal";
 import Table from "../../ui/Table";
@@ -79,6 +81,13 @@ const ProjectsRow = ({ project, index }) => {
                   </Modal>
                </>
             </div>
+         </td>
+         <td>
+            <Link
+               to={project._id}
+               className="flex justify-center">
+               <HiEye className="w-5 h-5 text-primary-800" />
+            </Link>
          </td>
       </Table.Row>
    );
