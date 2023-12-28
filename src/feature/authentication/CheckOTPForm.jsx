@@ -79,6 +79,8 @@ const CheckOTPForm = ({ phoneNumber, onBack, onReSendOtp, isSendingOtp }) => {
                   padding: "0.5rem 0.2rem",
                   border: "2px solid rgb(var(--color-primary-600))",
                   borderRadius: "0.5rem",
+                  backgroundColor: "rgb(var(--color-secondary-100))",
+                  color: "rgb(var(--color-secondary-700))",
                }}
                containerStyle={{
                   width: "100%",

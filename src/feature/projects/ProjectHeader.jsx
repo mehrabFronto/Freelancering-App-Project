@@ -19,7 +19,7 @@ function ProjectsHeader() {
             onClick={() => setIsOpen(true)}
             className="btn btn--primary flex items-center gap-x-2">
             <HiOutlinePlus className="text-white w-5 h-5" />
-            <span>اضافه کردن پروژه</span>
+            <span className="text-white">اضافه کردن پروژه</span>
          </button>
       </div>
    );

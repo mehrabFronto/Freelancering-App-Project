@@ -19,7 +19,9 @@ const RadioInput = ({
             className="cursor-pointer form-radio rounded-full border-2 border-secondary-400 bg-transparent
             w-4 h-4 checked:text-primary-900 ml-2"
          />
-         <label htmlFor={value}>
+         <label
+            htmlFor={value}
+            className="text-secondary-700">
             {label} {required && <span className="text-error">*</span>}
          </label>
       </div>
