@@ -2,14 +2,18 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import DarkModeProvider from "./contexts/DarkModeContext";
+import FreelancerLayout from "./feature/freelancer/FreelancerLayout";
 import OwnerLayout from "./feature/owner/OwnerLayout";
 import Auth from "./pages/Auth";
 import CompleteProfile from "./pages/CompleteProfile";
+import FreelancerDashboard from "./pages/FreelancerDashboard";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import OwnerDashboard from "./pages/OwnerDashboard";
 import ProjectsList from "./pages/ProjectsList";
+import Proposals from "./pages/Proposals";
 import SingleProject from "./pages/SingleProject";
+import SubmittedProjects from "./pages/SubmittedProjects";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +59,31 @@ const App = () => {
                      <Route
                         path="projects/:id"
                         element={<SingleProject />}
+                     />
+                  </Route>
+                  <Route
+                     path="/freelancer"
+                     element={<FreelancerLayout />}>
+                     <Route
+                        index
+                        element={
+                           <Navigate
+                              to="dashboard"
+                              replace
+                           />
+                        }
+                     />
+                     <Route
+                        path="dashboard"
+                        element={<FreelancerDashboard />}
+                     />
+                     <Route
+                        path="proposals"
+                        element={<Proposals />}
+                     />
+                     <Route
+                        path="projects"
+                        element={<SubmittedProjects />}
                      />
                   </Route>
                   <Route
