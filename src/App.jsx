@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import DarkModeProvider from "./contexts/DarkModeContext";
+import OwnerLayout from "./feature/owner/OwnerLayout";
 import Auth from "./pages/Auth";
 import CompleteProfile from "./pages/CompleteProfile";
 import Home from "./pages/Home";
@@ -9,7 +10,6 @@ import NotFound from "./pages/NotFound";
 import OwnerDashboard from "./pages/OwnerDashboard";
 import ProjectsList from "./pages/ProjectsList";
 import SingleProject from "./pages/SingleProject";
-import AppLayout from "./ui/AppLayout";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +34,7 @@ const App = () => {
                   />
                   <Route
                      path="/owner"
-                     element={<AppLayout />}>
+                     element={<OwnerLayout />}>
                      <Route
                         index
                         element={
