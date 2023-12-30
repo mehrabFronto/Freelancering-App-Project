@@ -1,5 +1,7 @@
+import Dashboard from "../feature/freelancer/Dashboard";
+
 const FreelancerDashboard = () => {
-   return <div>FreelancerDashboard</div>;
+   return <Dashboard />;
 };
 
 export default FreelancerDashboard;
