@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import DarkModeProvider from "./contexts/DarkModeContext";
@@ -22,6 +23,7 @@ const App = () => {
       <DarkModeProvider>
          <div className="bg-secondary-0 h-screen">
             <QueryClientProvider client={queryClient}>
+               <ReactQueryDevtools initialIsOpen={false} />
                <Toaster />
                <Routes>
                   <Route
