@@ -2,6 +2,11 @@ import useCategories from "../../../hooks/useCategories";
 import Filter from "../../../ui/Filter";
 import FilterDropDown from "../../../ui/FilterDropDown";
 
+const sortOptions = [
+   { value: "earliest", label: "قدیمی ترین" },
+   { value: "latest", label: "جدید ترین" },
+];
+
 const statusOptions = [
    { value: "All", label: "همه" },
    { label: "باز", value: "OPEN" },
@@ -31,6 +36,12 @@ const ProjectsHeader = () => {
                   ...transformedCategories,
                ]}
                filterField="category"
+            />
+
+            {/* sort */}
+            <FilterDropDown
+               options={sortOptions}
+               filterField="sort"
             />
          </div>
       </div>
