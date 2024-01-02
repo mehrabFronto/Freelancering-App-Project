@@ -15,6 +15,7 @@ import ProjectsList from "./pages/ProjectsList";
 import Proposals from "./pages/Proposals";
 import SingleProject from "./pages/SingleProject";
 import SubmittedProjects from "./pages/SubmittedProjects";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -40,7 +41,11 @@ const App = () => {
                   />
                   <Route
                      path="/owner"
-                     element={<OwnerLayout />}>
+                     element={
+                        <ProtectedRoute>
+                           <OwnerLayout />
+                        </ProtectedRoute>
+                     }>
                      <Route
                         index
                         element={
@@ -65,7 +70,11 @@ const App = () => {
                   </Route>
                   <Route
                      path="/freelancer"
-                     element={<FreelancerLayout />}>
+                     element={
+                        <ProtectedRoute>
+                           <FreelancerLayout />
+                        </ProtectedRoute>
+                     }>
                      <Route
                         index
                         element={
