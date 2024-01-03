@@ -3,6 +3,7 @@ import Modal from "../../../ui/Modal";
 import Table from "../../../ui/Table";
 import { toPersianDigits } from "../../../utils/toPersianDigits";
 import truncateText from "../../../utils/truncateText";
+import ChangeUserStatus from "./ChangeUserStatus";
 
 const userStatus = {
    0: { label: "رد شده", className: "badge--danger" },
@@ -31,7 +32,12 @@ const UsersRow = ({ index, user }) => {
             <Modal
                open={isOpen}
                onClose={() => setIsOpen(false)}
-               title="تغییر وضعیت کاربر"></Modal>
+               title="تغییر وضعیت کاربر">
+               <ChangeUserStatus
+                  userId={user._id}
+                  onClose={() => setIsOpen(false)}
+               />
+            </Modal>
             <button onClick={() => setIsOpen(true)}>تغییر وضعیت</button>
          </td>
       </Table.Row>
