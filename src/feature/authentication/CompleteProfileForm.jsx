@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +7,7 @@ import { completeProfile } from "../../services/authServices";
 import Loading from "../../ui/Loading";
 import RadioInputGroup from "../../ui/RadioInputGroup";
 import TextField from "../../ui/TextField";
+import useAuthorize from "./useAuthorize";
 
 const CompleteProfileForm = () => {
    const navigate = useNavigate();
@@ -37,6 +39,12 @@ const CompleteProfileForm = () => {
          toast.error(err?.response?.data?.message);
       }
    };
+
+   const { isAuthenticated } = useAuthorize();
+
+   useEffect(() => {
+      if (isAuthenticated) navigate("/", { replace: true });
+   }, [isAuthenticated, navigate]);
 
    return (
       <div className="flex flex-col items-center gap-y-8">

@@ -14,6 +14,14 @@ const useAuthorize = () => {
       isAuthenticated = true;
    }
 
+   //? check if user is verified by admin or no
+
+   let isVerified = false;
+
+   if (user && Number(user.status) === 2) {
+      isVerified = true;
+   }
+
    //? check if user is authorized or no
 
    let isAuthorized = false;
@@ -53,7 +61,7 @@ const useAuthorize = () => {
          isAuthorized = true;
    }
 
-   return { user, isLoading, isAuthenticated, isAuthorized };
+   return { user, isLoading, isAuthenticated, isAuthorized, isVerified };
 };
 
 export default useAuthorize;

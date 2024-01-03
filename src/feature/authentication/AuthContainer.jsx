@@ -1,10 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { getOtp } from "../../services/authServices";
 import CheckOTPForm from "./CheckOTPForm";
 import SendOTPForm from "./SendOTPForm";
+import useAuthorize from "./useAuthorize";
 
 const AuthContainer = () => {
    const [step, setStep] = useState(1);
@@ -24,6 +26,14 @@ const AuthContainer = () => {
          setStep(2);
       }
    };
+
+   const navigate = useNavigate();
+
+   const { isAuthenticated } = useAuthorize();
+
+   useEffect(() => {
+      if (isAuthenticated) navigate("/", { replace: true });
+   }, [isAuthenticated, navigate]);
 
    return step === 1 ? (
       <SendOTPForm
