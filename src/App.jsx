@@ -17,6 +17,7 @@ import ProjectsList from "./pages/ProjectsList";
 import Proposals from "./pages/Proposals";
 import SingleProject from "./pages/SingleProject";
 import SubmittedProjects from "./pages/SubmittedProjects";
+import Users from "./pages/Users";
 import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -118,6 +119,10 @@ const App = () => {
                      <Route
                         path="dashboard"
                         element={<AdminDashboard />}
+                     />
+                     <Route
+                        path="users"
+                        element={<Users />}
                      />
                   </Route>
                   <Route
