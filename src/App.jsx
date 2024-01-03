@@ -124,6 +124,14 @@ const App = () => {
                         path="users"
                         element={<Users />}
                      />
+                     <Route
+                        path="projects"
+                        element={<Proposals />}
+                     />{" "}
+                     <Route
+                        path="proposals"
+                        element={<SubmittedProjects />}
+                     />
                   </Route>
                   <Route
                      path="*"
