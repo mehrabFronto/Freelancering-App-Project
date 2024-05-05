@@ -9,14 +9,14 @@
 
 Here're some of the project's best features:
 
-*   Signin with otp code using Kavenegar service
-*   Create accessToken based on refreshToken after accessToken expired
-*   Verify users by Admin after signin in Admin panel
-*   Create projects by Owner in Owner panel
-*   Create proposals for projects by Freelancer in Freelancer panel 
-*   Sorting projects and filtering based on categories and status by query-string(seacrhParams)
-*   Managing users, projects and proposals like adding, removing or updating and all the other processes by only Admin in Admin panel
-*   Securing Admin panel, Freelancer panel and Owner panel
-*   Dark mode
+*	Incorporating OTP code functionality via Kavehnegar service.
+*	Established a mechanism to generate access tokens using refresh tokens
+*	Verify users post-sign-in by Admin within the Admin panel.
+*	Creating projects within the Owner panel.
+*	Generating project proposals within the Freelancer panel,
+*	Introduced a feature to sort projects and filter applying "query-string" for categorization
+*	Admins efficiently handle user, project, and proposal management tasks within the Admin panel.
+*	Dark mode feature to enhance user satisfaction and decrease in eye strain complaints.
+
 
 <p id="description">Because back-end is local, the project could not be deployed on a server</p>
