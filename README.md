@@ -17,6 +17,3 @@ Here're some of the project's best features:
 *	Introduced a feature to sort projects and filter applying "query-string" for categorization
 *	Admins efficiently handle user, project, and proposal management tasks within the Admin panel.
 *	Dark mode feature to enhance user satisfaction and decrease in eye strain complaints.
-
-
-<p id="description">Because back-end is local, the project could not be deployed on a server</p>
