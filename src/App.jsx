@@ -3,7 +3,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import DarkModeProvider from "./contexts/DarkModeContext";
-import AdminLayout from "./feature/admin/adminLayout";
 import FreelancerLayout from "./feature/freelancer/FreelancerLayout";
 import OwnerLayout from "./feature/owner/OwnerLayout";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -19,6 +18,7 @@ import SingleProject from "./pages/SingleProject";
 import SubmittedProjects from "./pages/SubmittedProjects";
 import Users from "./pages/Users";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import AdminLayout from "./feature/admin/AdminLayout";
 
 const queryClient = new QueryClient();
 
