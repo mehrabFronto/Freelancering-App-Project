@@ -126,11 +126,11 @@ const App = () => {
                      />
                      <Route
                         path="projects"
-                        element={<Proposals />}
+                        element={<SubmittedProjects />}
                      />{" "}
                      <Route
                         path="proposals"
-                        element={<SubmittedProjects />}
+                        element={<Proposals />}
                      />
                   </Route>
                   <Route
