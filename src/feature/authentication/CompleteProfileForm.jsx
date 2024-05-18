@@ -40,11 +40,13 @@ const CompleteProfileForm = () => {
       }
    };
 
-   const { isAuthenticated } = useAuthorize();
+   const { user } = useAuthorize();
 
    useEffect(() => {
-      if (isAuthenticated) navigate("/", { replace: true });
-   }, [isAuthenticated, navigate]);
+      if(user){
+         if (user.isActive) navigate("/", { replace: true });
+      }
+   }, [user, navigate]);
 
    return (
       <div className="flex flex-col items-center gap-y-8">
