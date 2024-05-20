@@ -1,9 +1,9 @@
 import UserAvatar from "../feature/authentication/UserAvatar";
-import useUser from "../feature/authentication/useUser";
+import useUser from "../hooks/useUser";
 import HeaderMenu from "./HeaderMenu";
 
 const Header = () => {
-   const { isLoading } = useUser();
+   const { isPending: isLoading } = useUser();
 
    return (
       <div className="bg-secondary-50 py-4 px-8 border-b border-secondary-300">

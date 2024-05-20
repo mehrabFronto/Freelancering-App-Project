@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import useUser from "./useUser";
+import useUser from "../../hooks/useUser";
 
 const useAuthorize = () => {
-   const { user, isLoading } = useUser();
+   const { user, isPending: isLoading } = useUser();
 
    const { pathname } = useLocation();
 
