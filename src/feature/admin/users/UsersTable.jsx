@@ -1,7 +1,7 @@
 import Empty from "../../../ui/Empty";
 import Loading from "../../../ui/Loading";
 import Table from "../../../ui/Table";
-import useUsers from "../useUser";
+import useUsers from "../useUsers";
 import UsersRow from "./UsersRow";
 
 const UsersTable = () => {

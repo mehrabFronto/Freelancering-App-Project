@@ -3,7 +3,7 @@ import DashboardHeader from "../../ui/DashboardHeader";
 import Loading from "../../ui/Loading";
 import useProposals from "../proposals/useProposals";
 import Stats from "./Stats";
-import useUsers from "./useUser";
+import useUsers from "./useUsers";
 
 const Dashboard = () => {
    const { isLoading: isLoadingProjects, projects } = useProjects();
